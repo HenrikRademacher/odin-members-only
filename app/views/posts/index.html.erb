@@ -1,0 +1,11 @@
+<h2>Look at all these posts!</h2>
+<%= link_to "Create your own Post!", new_post_path %>
+<% if @posts.any? %>
+    <ul>
+        <% @posts.each do | post | %>
+          <li><%= link_to post.title, post_path(post.id)%></li>
+        <% end %>
+    </ul>
+<% else %>
+    <p>There are currently no posts to be displayed.</p>
+<% end  %>

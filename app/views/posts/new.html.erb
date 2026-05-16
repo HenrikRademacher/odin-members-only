@@ -1,0 +1,22 @@
+<h2>Create a new post!</h2>
+
+<%= form_with model: @post do | form | %>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+    </div>
+    <div>
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+
+<% end %>
+
+<%= link_to "Cancel", posts_path %>
