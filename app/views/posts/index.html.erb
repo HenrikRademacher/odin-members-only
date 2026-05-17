@@ -1,9 +1,25 @@
 <h2>Look at all these posts!</h2>
+<% if user_signed_in? %>
+  <h3>Welcome, <%= current_user.name %>!</h3>
+  <li>
+    <%= link_to('Logout', destroy_user_session_path, data: { "turbo-method": :delete } ) %>        
+  </li>
+<% else %>
+  <h3>Welcome, Guest!</h3>
+  <li>
+  <%= link_to('Login', new_user_session_path) %>  
+  </li>
+<% end %>
+<p></p>
 <%= link_to "Create your own Post!", new_post_path %>
 <% if @posts.any? %>
     <ul>
         <% @posts.each do | post | %>
-          <li><%= link_to post.title, post_path(post.id)%></li>
+          <% if user_signed_in? %>
+            <li><%= link_to post.title, post_path(post.id)%> (Created by <%= post.author %>)</li>
+          <% else %>
+            <li><%= link_to post.title, post_path(post.id)%></li>
+          <% end %>
         <% end %>
     </ul>
 <% else %>

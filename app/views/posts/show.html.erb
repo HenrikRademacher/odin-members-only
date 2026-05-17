@@ -1,4 +1,8 @@
 <h1><%= @post.title %></h1>
 <p>Written by: <%= @post.author %></p>
 <p><%= @post.content %> </p>
+<% if @post.user == current_user %>
+    <%= link_to "Edit post", edit_post_path(@post) %>
+    <%= button_to "Delete Post", @post, method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
+<% end %>
 <%= link_to "Post overview", posts_path %>
